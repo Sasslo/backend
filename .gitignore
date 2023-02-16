@@ -1,6 +1,11 @@
 # package directories
 /node_modules
 
+# serverless
+/.serverless
+deploy.json
+
+
 # environment variables
 .env
 services.json
