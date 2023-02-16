@@ -2,7 +2,6 @@ const bodyParser = require("body-parser");
 const morgan = require("morgan");
 const express = require("express");
 const cors = require("cors");
-const fs = require("fs");
 require("dotenv").config();
 const httpStatusCodes = require("http-status-codes");
 
@@ -22,12 +21,8 @@ app.set("port", port);
 
 global.ROOTPATH = __dirname;
 global.UPLOAD_DIR = __dirname + "/fileUploads";
-global.ENV = process.env.NODE_ENV;
+global.ENV = nodeEnv;
 console.log("ENV: ", ENV);
-
-if (!fs.existsSync(UPLOAD_DIR)) {
-  fs.mkdirSync(UPLOAD_DIR);
-}
 
 app.use(express.json());
 
@@ -71,7 +66,7 @@ app.all("/", function (req, res, next) {
     success: true,
     date: new Date(),
     version: "v18",
-    env: process.env.NODE_ENV,
+    env: nodeEnv,
   });
 });
 
