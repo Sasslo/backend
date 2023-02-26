@@ -1,6 +1,7 @@
 const models = require("../../models");
 const { body, validationResult } = require("express-validator");
-
+const fs = require("fs").promises;
+path = require("path");
 const Error = require("../../exceptions/error");
 const {
   authorizationUrlGenerator,
@@ -45,6 +46,12 @@ const fetchUsers = async (req, res) => {
     // TODO ? for now fetching manually but it should be fetched from the authorised persons details
     const credential = await models["credential"].findOne({ company_id: "1" });
     const users = await listUsers(credential);
+
+    //save in jason file
+    fs.writeFile(
+      path.join(__dirname, "../../tempData/users.json"),
+      JSON.stringify(users)
+    );
     return res.json({ success: true, msg: "Success", data: users });
   } catch (e) {
     Error.res(res, e);
@@ -58,6 +65,12 @@ const fetchActivites = async (req, res) => {
     // TODO ? for now fetching manually but it should be fetched from the authorised persons details
     const credential = await models["credential"].findOne({ company_id: "1" });
     const activities = await listActivities(credential);
+
+    //save in jason file
+    fs.writeFile(
+      path.join(__dirname, "../../tempData/activities.json"),
+      JSON.stringify(activities)
+    );
     return res.json({ success: true, msg: "Success", data: activities });
   } catch (e) {
     Error.res(res, e);
