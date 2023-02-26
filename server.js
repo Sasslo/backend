@@ -30,7 +30,7 @@ if (!fs.existsSync(UPLOAD_DIR)) {
 }
 
 app.use(express.json());
-
+app.set("json spaces", 2);
 // use the cors
 app.use(cors());
 
@@ -142,4 +142,4 @@ function normalizePort(val) {
   return false;
 }
 
-module.exports = app
+module.exports = app;

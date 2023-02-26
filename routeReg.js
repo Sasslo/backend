@@ -1,8 +1,8 @@
-const testRouter = require("./routes/test-route");
+const integrateRouter = require("./routes/integrate");
 const version = "/api/v1/";
 
 const routerRegistration = (app) => {
-  app.use(version, testRouter.router);
+  app.use(version, integrateRouter.router);
 };
 
 module.exports = routerRegistration;
