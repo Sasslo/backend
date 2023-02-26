@@ -2,10 +2,9 @@ module.exports = function (mongoose) {
   var Schema = mongoose.Schema;
 
   var employeeSchema = new Schema({
-    company_id: { type: mongoose.Schema.Types.ObjectId, ref: "companys" },
+    company_id: { type: mongoose.Schema.Types.ObjectId, ref: "company" },
     employee_id: String,
     name: String,
-    gender: String,
     email: String,
     role: String,
     is_active: Boolean,
